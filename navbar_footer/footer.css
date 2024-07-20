@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#footer {
+    height: 100px;
+    background-color: #404040;
+    text-align: center;
+}
+
+#footer a {
+    font-size: 30px;
+    line-height: 100px;
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 0px 10px;
+}
+
+#footer a:hover {
+    color: #c9e8c3;
+}
+
+#footer #contact-us{
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+}

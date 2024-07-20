@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@media all and (orientation: portrait) {
+
+    /*Sidebar menu*/
+    .navbar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #404040;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+    }
+
+    /*Sidebar links*/
+    .navbar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        font-family: "Rubik", sans-serif;
+        color: #e0e0e0;
+        display: block;
+        transition: 0.3s;
+    }
+
+    /*Changes the colour of links when mouse hovers over it*/
+    .navbar a:hover {
+        color: #c9e8c3;
+    }
+
+    /*Sidebar close button*/
+    .navbar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    /*Open sidebar button*/
+    .openbtn {
+        display: inline;
+        float: left;
+        font-size: 36px;
+        font-family: "Rubik", sans-serif;
+        cursor: pointer;
+        background-color: #404040;
+        color: #e0e0e0;
+        /* padding: 10px 25px; */
+        margin: 25px 25px;
+        border: none;
+    }
+
+    .openbtn:hover {
+        color: #c9e8c3;
+    }
+
+    #arg {
+        height: 10000px
+    }
+
+    /* header */
+    #header {
+        overflow: hidden;
+        top: 0;
+        width: 100vw;
+        height: 100px;
+        line-height: 100px;
+        background-color: #404040;
+        /* text-align: center; */
+    }
+
+    #header img {
+        display: inline;
+        float: right;
+        margin: 10px;
+        height: 80px;
+        right: 0;
+    }
+}
+
+@media all and (orientation: landscape) {
+    #navbar li {
+        list-style-type: none;
+        float: left;
+    }
+
+    #navbar li a {
+        display: block;
+        padding-left: 40px;
+        text-decoration: none;
+        background-color: #404040;
+        color: #e0e0e0;
+        font-family: "Rubik", sans-serif;
+        line-height: 100px;
+    }
+
+    #navbar a:hover {
+        color: #c9e8c3;
+    }
+
+    #navbar .closebtn {
+        display: none;
+    }
+
+    #header .openbtn {
+        display: none;
+    }
+
+    #header {
+        width: 100vw;
+        height: 100px;
+        background-color: #404040;
+    }
+
+    #header img {
+        display: inline;
+        float: right;
+        margin: 10px;
+        height: 80px;
+        right: 0;
+    }
+}
