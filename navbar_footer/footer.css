@@ -7,6 +7,8 @@
     height: 100px;
     background-color: #404040;
     text-align: center;
+    container-type: size;
+    container-name: footer;
 }
 
 #footer a {
@@ -15,6 +17,12 @@
     color: #e0e0e0;
     text-decoration: none;
     padding: 0px 10px;
+}
+
+@container footer (max-width: 8cm) {
+    #footer h1 {
+        font-size: 7vw;
+    }
 }
 
 #footer a:hover {

@@ -10,7 +10,7 @@
     overflow: hidden;
 }
 
-@media all and (orientation: portrait) {
+@media all and (max-width: 27cm) {
 
     /*Sidebar menu*/
     .navbar {
@@ -93,7 +93,7 @@
     }
 }
 
-@media all and (orientation: landscape) {
+@media all and (min-width: 27cm) {
     #navbar li {
         list-style-type: none;
         float: left;
