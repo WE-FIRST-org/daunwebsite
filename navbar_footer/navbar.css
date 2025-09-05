@@ -19,8 +19,8 @@
         position: fixed;
         z-index: 1;
         top: 0;
-        left: 0;
-        background-color: #404040;
+        right: 0;
+        background-color: #162b17;
         overflow-x: hidden;
         padding-top: 60px;
         transition: 0.5s;
@@ -54,14 +54,14 @@
     /*Open sidebar button*/
     .openbtn {
         display: inline;
-        float: left;
-        font-size: 36px;
+        float: right;
+        font-size: 30px;
         font-family: "Rubik", sans-serif;
         cursor: pointer;
-        background-color: #404040;
+        background-color: #162b17;
         color: #e0e0e0;
         /* padding: 10px 25px; */
-        margin: 25px 25px;
+        margin: 15px 25px;
         border: none;
     }
 
@@ -78,35 +78,35 @@
         overflow: hidden;
         top: 0;
         width: 100vw;
-        height: 100px;
-        line-height: 100px;
-        background-color: #404040;
+        height: 70px;
+        line-height: 70px;
+        background-color: #162b17;
         /* text-align: center; */
     }
 
     #header img {
         display: inline;
-        float: right;
+        float: left;
         margin: 10px;
-        height: 80px;
-        right: 0;
+        height: 50px;
+        left: 0;
     }
 }
 
 @media all and (min-width: 27cm) {
     #navbar li {
         list-style-type: none;
-        float: left;
+        float: right;
     }
 
     #navbar li a {
         display: block;
-        padding-left: 40px;
+        padding-right: 40px;
         text-decoration: none;
-        background-color: #404040;
+        background-color: #162b17;
         color: #e0e0e0;
         font-family: "Rubik", sans-serif;
-        line-height: 100px;
+        line-height: 70px;
     }
 
     #navbar a:hover {
@@ -123,15 +123,15 @@
 
     #header {
         width: 100vw;
-        height: 100px;
-        background-color: #404040;
+        height: 70px;
+        background-color: #162b17;
     }
 
     #header img {
         display: inline;
-        float: right;
+        float: left;
         margin: 10px;
-        height: 80px;
-        right: 0;
+        height: 50px;
+        left: 0;
     }
 }

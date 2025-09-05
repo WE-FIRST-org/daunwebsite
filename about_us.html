@@ -4,29 +4,6 @@
     <meta charset="UTF-8">
     <title>Home</title>
 
-    <link rel="stylesheet" type="text/css" href="navbar_footer/navbar.css">
-    <link rel="stylesheet" type="text/css" href="navbar_footer/footer.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <!-- FOR TITLES
-    weight: Use a value from 300 to 900
-    font-family: "Rubik", sans-serif;
-    font-weight: weight;
-    font-style: normal; -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <!-- FOR TEXT
-    weight: Use a value from 200 to 1000
-    font-family: "Nunito", sans-serif;
-    font-weight: weight;
-    font-style: normal; -->
-
     <style>
         * {
             margin: 0;
@@ -37,25 +14,28 @@
             background-color: #404040;
         }
 
-        #title-banner {
-            height: 200px;
-            text-align: center;
+        #title-image {
+            background-image: linear-gradient(rgba(0,25,0,0.5), rgba(0,25,0,0.5)), url("images/banner-image.jpg");
+            height: 50vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            
+            text-align: left;
+            padding-left: 40px;
+            padding-top: 60px;
             background-color: #676767;
+            /*
             container-type: size;
             container-name: title-banner;
+            */
         }
 
-        #title-banner h1 {
-            font-family: "Rubik", sans-serif;
+        #title-text h1 {
+            font-family: "Inter", sans-serif;
             font-size: 50px;
-            line-height: 200px; /* if banner height changes, change this too */
-            color: #1ab70c;
-        }
-
-        @container title-banner (max-width: 18cm) {
-            #title-banner h1 {
-                font-size: 6vw;
-            }
+            color: #e2e2e2;
         }
 
 
@@ -74,11 +54,15 @@
 </head>
 
 <body>
+   <div id="insertedImports"></div>
+   
     <div id="insertedNavbar"></div>
     
 
-    <div id="title-banner">
-        <h1>ABOUT US</h1>
+    <div id="title-image">
+        <div id="title-text">
+            <h1>ABOUT US</h1>
+        </div>
     </div>
 
     <div id="body-text">
