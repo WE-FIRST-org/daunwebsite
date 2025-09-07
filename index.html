@@ -114,6 +114,12 @@
             font-size: 30px;
             margin: 10px 0px;
         }
+
+        #send-message h3 {
+            font-family: "Inter", sans-serif;
+            font-size: 20px;
+            margin: 10px 0px;
+        }
         
         input[type=text], select, textarea {
             font-family: "Inter", sans-serif;
@@ -227,8 +233,9 @@
     
     <div id="send-message">
        <h2>SEND US A MESSAGE!</h2>
+       <h3><b>UNFORTUNATELY, OUR CONTACT FORM IS NOT READY YET. INSTEAD, PLEASE EMAIL US DIRECTLY AT: <i>email!</i></b></h3>
        
-        <form action="contact_form_handler.php" method="POST">
+        <form id="contact-form">
             <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
             <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
             <input type="email" id="email" name="email" placeholder="Email" required>
@@ -236,8 +243,8 @@
             <textarea id="message" name="message" placeholder="Write your message..." style="height:200px" required></textarea>
             <input type="submit" value="SUBMIT">
         </form>
+        <div id="form-response" style="margin-top: 20px; color: green;"></div>
     </div>
-
 
     <div id="insertedFooter"></div>
 
@@ -250,6 +257,27 @@
         frmvalidator.addValidation("last-name","req","Please provide your last name");
         frmvalidator.addValidation("email","req","Please provide your email");
         frmvalidator.addValidation("email","email","Please enter a valid email address");
+
+        // JavaScript to handle form submission via AJAX
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this); // Collect form data
+
+            fetch('contact_form_handler.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Display the response from the server
+                document.getElementById('form-response').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('form-response').innerText = 'An error occurred. Please try again.';
+            });
+        });
     </script>
 
     <!-- navbar/footer stuff - PLEASE DO NOT MODIFY -->

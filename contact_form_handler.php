@@ -1,5 +1,4 @@
 <?php
-// SERVER-SIDE FORM VALIDATION
 $errors = '';
 $myemail = 'sarahwu410@gmail.com';
 
@@ -21,7 +20,6 @@ if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
     $errors .= "Error: Invalid email address.\n";
 }
 
-// SENDING THE EMAIL
 if (empty($errors)) {
     $to = $myemail;
     $email_subject = "Online form submission: $subject_line";
@@ -36,13 +34,11 @@ if (empty($errors)) {
     $headers .= "Reply-To: $email_address";
 
     if (mail($to, $email_subject, $email_body, $headers)) {
-        // Redirect to the 'thank you' page
-        header('Location: contact-form-thank-you.html');
-        exit();
+        echo "Thank you! Your message has been sent.";
     } else {
         echo "Error: Unable to send email. Please try again later.";
     }
 } else {
-    echo nl2br($errors); // Display errors to the user
+    echo nl2br($errors); // Return errors to the client
 }
 ?>

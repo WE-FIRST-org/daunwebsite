@@ -37,24 +37,38 @@
             color: #e2e2e2;
         }
 
-        #contact-form {
+        #contact-us {
             background-color: white;
             padding: 50px 70px;
         }
         
-        #contact-form h2 {
+        #contact-us h2 {
             font-family: "Inter", sans-serif;
             font-size: 30px;
             margin: 10px 0px;
         }
         
-        #contact-form h3 {
+        #contact-us h3 {
             font-family: "Inter", sans-serif;
             font-size: 20px;
             margin: 10px 0px;
         }
         
         input[type=text], select, textarea {
+            font-family: "Inter", sans-serif;
+            background-color: white;
+            border: solid;
+            border-color: #1c7b20;
+            color: #1c7b20;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        input[type=email], select, textarea {
             font-family: "Inter", sans-serif;
             background-color: white;
             border: solid;
@@ -127,18 +141,20 @@
         </div>
     </div>
 
-    <div id="contact-form">
+    <div id="contact-us">
        <h2>INTERESTED IN CONTACTING US?</h2>
        <h3>SEND US A MESSAGE!</h3>
+       <h3><b>UNFORTUNATELY, OUR CONTACT FORM IS NOT READY YET. INSTEAD, PLEASE EMAIL US DIRECTLY AT: <i>email!</i></b></h3>
        
-        <form action="contact_form_handler.php"></form> <!-- no idea what this is yet -->
-        
-        <input type="text" id="first-name" name="first-name" placeholder="First Name">
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
-        <input type="text" id="email" name="email" placeholder="Email">
-        <input type="text" id="subject-line" name="subject-line" placeholder="Subject Line">
-        <input type="text" id="message" name="message" placeholder="Write your message..." style="height:200px">
+       <form id="contact-form">
+        <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="text" id="subject-line" name="subject-line" placeholder="Subject Line" required>
+        <textarea id="message" name="message" placeholder="Write your message..." style="height:200px" required></textarea>
         <input type="submit" value="SUBMIT">
+    </form>
+    <div id="form-response" style="margin-top: 20px; color: green;"></div>
     </div>
 
 
@@ -153,6 +169,27 @@
         frmvalidator.addValidation("last-name","req","Please provide your last name");
         frmvalidator.addValidation("email","req","Please provide your email");
         frmvalidator.addValidation("email","email","Please enter a valid email address");
+
+        // JavaScript to handle form submission via AJAX
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this); // Collect form data
+
+            fetch('contact_form_handler.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Display the response from the server
+                document.getElementById('form-response').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('form-response').innerText = 'An error occurred. Please try again.';
+            });
+        });
     </script>
 
     <!-- navbar/footer stuff - PLEASE DO NOT MODIFY -->
