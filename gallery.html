@@ -39,13 +39,13 @@
 
         /*image carousel*/
         #gallery-image-carousel {
-            background-color: white;
+            background-color: #162b17;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0));
             box-sizing: border-box;
-            padding-top:10px;
+            padding:10px;
         }
         
         #gallery-image-slides {
-            background-color: #162b17;
             max-width: 1000px;
             position: relative;
             margin: auto;
@@ -93,10 +93,11 @@
           height: 15px;
           width: 15px;
           margin: 0 2px;
+          margin-top: 10px;
           background-color: #bbb;
           border-radius: 50%;
           display: inline-block;
-          transition: background-color 0.6s ease;
+          transition: background-color 0.5s ease;
         }
 
         .active, .dot:hover {
@@ -194,7 +195,6 @@
             <a class="prev" onclick="moveImageCarousel(-1)">&#10094;</a>
             <a class="next" onclick="moveImageCarousel(1)">&#10095;</a>
         </div>
-        <br>
 
         <!--dots and circles for image carousel-->
         <div style="text-align:center">

@@ -103,12 +103,13 @@
         
         /*image carousel*/
         #image-carousel {
-            background-color: white;
+            background-color: #162b17;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0));
             box-sizing: border-box;
+            padding: 10px;
         }
         
         #image-slides {
-            background-color: #162b17;
             max-width: 1000px;
             position: relative;
             margin: auto;
@@ -156,10 +157,11 @@
           height: 15px;
           width: 15px;
           margin: 0 2px;
+          margin-top: 10px;
           background-color: #bbb;
           border-radius: 50%;
           display: inline-block;
-          transition: background-color 0.6s ease;
+          transition: background-color 0.5s ease;
         }
 
         .active, .dot:hover {
@@ -295,7 +297,7 @@
         Members are given the chance to gain <b>hands-on experience with robotics</b>, including the planning, designing, mechanics, and programming of a robot.
         <b>Strong lasting friendships</b> can be made with other members on the team, as well as <b>connections with other mentors and students</b>.
         Not only does DAUN provides experience in robotics, but there is also experience with <b>business and art!</b></p>
-        <a href="https://www.firstinspires.org/robotics/frc" id="learn-about-first">
+        <a href="https://www.firstinspires.org/about" id="learn-about-first">
             LEARN MORE ABOUT <i>FIRST</i>
         </a>
     </div>
@@ -366,7 +368,6 @@
             <a class="prev" onclick="moveImageCarousel(-1)">&#10094;</a>
             <a class="next" onclick="moveImageCarousel(1)">&#10095;</a>
         </div>
-        <br>
 
         <!--dots and circles for image carousel-->
         <div style="text-align:center">
