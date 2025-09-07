@@ -128,6 +128,20 @@
             display: inline-block;
             font-size: 16px;
         }
+
+        input[type=email], select, textarea {
+            font-family: "Inter", sans-serif;
+            background-color: white;
+            border: solid;
+            border-color: #1c7b20;
+            color: #1c7b20;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
         
         #first-name {
             width: 40%;
@@ -214,14 +228,14 @@
     <div id="send-message">
        <h2>SEND US A MESSAGE!</h2>
        
-        <form action="contact_form_handler.php"></form> <!-- no idea what this is yet -->
-        
-        <input type="text" id="first-name" name="first-name" placeholder="First Name">
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
-        <input type="text" id="email" name="email" placeholder="Email">
-        <input type="text" id="subject-line" name="subject-line" placeholder="Subject Line">
-        <input type="text" id="message" name="message" placeholder="Write your message..." style="height:200px">
-        <input type="submit" value="SUBMIT">
+        <form action="contact_form_handler.php" method="POST">
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="text" id="subject-line" name="subject-line" placeholder="Subject Line" required>
+            <textarea id="message" name="message" placeholder="Write your message..." style="height:200px" required></textarea>
+            <input type="submit" value="SUBMIT">
+        </form>
     </div>
 
 

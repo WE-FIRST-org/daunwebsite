@@ -146,7 +146,13 @@
 
 
     <script>
-        // JS goes here!
+        // this is JS!
+        // client-side contact form validation
+        var frmvalidator  = new Validator("message-form");
+        frmvalidator.addValidation("first-name","req","Please provide your first name");
+        frmvalidator.addValidation("last-name","req","Please provide your last name");
+        frmvalidator.addValidation("email","req","Please provide your email");
+        frmvalidator.addValidation("email","email","Please enter a valid email address");
     </script>
 
     <!-- navbar/footer stuff - PLEASE DO NOT MODIFY -->
