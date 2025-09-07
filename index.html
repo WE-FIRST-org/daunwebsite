@@ -13,7 +13,8 @@
         body {
             background-color: #404040;
         }
-
+        
+        /*title image banner*/
         #title-image {
             background-image: linear-gradient(rgba(0,25,0,0.5), rgba(0,25,0,0.5)), url("images/banner-image.jpg");
             height: 50vh;
@@ -63,7 +64,7 @@
             background-color: #1c7b20;
         }
 
-
+        /*who are we explanation*/
         #who-are-we {
             background-color: white;
             padding: 50px 70px;
@@ -100,10 +101,82 @@
             background-color: #1c7b20;
         }
         
+        /*image carousel*/
         #image-carousel {
-            background-color: #162b17;
+            background-color: white;
+            box-sizing: border-box;
         }
         
+        #image-slides {
+            background-color: #162b17;
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+        
+        .carousel-slides {
+            display: none;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.5s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        
+        .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+          background-color: rgba(0,0,0,0.8);
+        }
+
+        .image-number {
+          font-family: "Inter", sans-serif;
+          color: #f2f2f2;
+          font-size: 12px;
+          padding: 8px 12px;
+          position: absolute;
+          top: 0;
+        }
+        
+        .dot {
+          cursor: pointer;
+          height: 15px;
+          width: 15px;
+          margin: 0 2px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+          background-color: #717171;
+        }
+
+        .fade {
+          animation-name: fade;
+          animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+          from {opacity: .4}
+          to {opacity: 1}
+        }
+        
+        /*contact form*/
         #send-message {
             background-color: white;
             padding: 50px 70px;
@@ -228,7 +301,88 @@
     </div>
     
     <div id="image-carousel">
-    image carousel
+        <div id="image-slides">
+            <div class="carousel-slides fade">
+               <div class="image-number">1/12</div>
+                <img src="images/imagecarousel1.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">2/12</div>
+                <img src="images/imagecarousel2.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">3/12</div>
+                <img src="images/imagecarousel3.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">4/12</div>
+                <img src="images/imagecarousel4.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">5/12</div>
+                <img src="images/imagecarousel5.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">6/12</div>
+                <img src="images/imagecarousel6.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">7/12</div>
+                <img src="images/imagecarousel7.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">8/12</div>
+                <img src="images/imagecarousel8.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">9/12</div>
+                <img src="images/imagecarousel9.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">10/12</div>
+                <img src="images/imagecarousel10.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">11/12</div>
+                <img src="images/imagecarousel11.jpg" style="width:100%">
+            </div>
+
+            <div class="carousel-slides fade">
+               <div class="image-number">12/12</div>
+                <img src="images/imagecarousel12.jpg" style="width:100%">
+            </div>
+
+            <!--next and previous buttons-->
+            <a class="prev" onclick="moveImageCarousel(-1)">&#10094;</a>
+            <a class="next" onclick="moveImageCarousel(1)">&#10095;</a>
+        </div>
+        <br>
+
+        <!--dots and circles for image carousel-->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+            <span class="dot" onclick="currentSlide(9)"></span>
+            <span class="dot" onclick="currentSlide(10)"></span>
+            <span class="dot" onclick="currentSlide(11)"></span>
+            <span class="dot" onclick="currentSlide(12)"></span>
+        </div>
     </div>
     
     <div id="send-message">
@@ -251,6 +405,36 @@
 
     <script>
         // this is JS!
+
+        // image-carousel
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function moveImageCarousel(n) {
+          showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("carousel-slides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+        }
+
+        
         // client-side contact form validation
         var frmvalidator  = new Validator("message-form");
         frmvalidator.addValidation("first-name","req","Please provide your first name");
