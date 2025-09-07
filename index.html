@@ -23,8 +23,7 @@
             position: relative;
             
             text-align: left;
-            padding-left: 40px;
-            padding-top: 60px;
+            padding: 70px;
             background-color: #676767;
             /*
             container-type: size;
@@ -34,13 +33,13 @@
 
         #title-text h1 {
             font-family: "Inter", sans-serif;
-            font-size: 50px;
+            font-size: 100px;
             color: #e2e2e2;
         }
 
         #title-text h3 {
             font-family: "Inter", sans-serif;
-            font-size: 30px;
+            font-size: 50px;
             color: #afafaf;
         }
         
@@ -60,21 +59,118 @@
         }
         
         #join-button:hover {
-            border: solid;
             border-color: #1c7b20;
             background-color: #1c7b20;
         }
 
 
-        #body-text {
+        #who-are-we {
             background-color: white;
-            height: 1000px;
             padding: 50px 70px;
         }
+        
+        #who-are-we h2 {
+            font-family: "Inter", sans-serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
 
-        #body-text p {
-            font-family: "Nunito", sans-serif;
+        #who-are-we p {
+            font-family: "Inter", sans-serif;
             font-size: 20px;
+            line-height: 30px;
+        }
+        #who-are-we #learn-about-first {
+            font-family: "Inter", sans-serif;
+            background-color: transparent;
+            border: solid;
+            border-color: #1c7b20;
+            color: #1c7b20;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: 0.5s;
+        }
+        
+        #who-are-we #learn-about-first:hover {
+            color: #e2e2e2;
+            background-color: #1c7b20;
+        }
+        
+        #image-carousel {
+            background-color: #162b17;
+        }
+        
+        #send-message {
+            background-color: white;
+            padding: 50px 70px;
+        }
+        
+        #send-message h2 {
+            font-family: "Inter", sans-serif;
+            font-size: 30px;
+            margin: 10px 0px;
+        }
+        
+        input[type=text], select, textarea {
+            font-family: "Inter", sans-serif;
+            background-color: white;
+            border: solid;
+            border-color: #1c7b20;
+            color: #1c7b20;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        #first-name {
+            width: 40%;
+            display: inline;
+            float: left;
+        }
+        
+        #last-name {
+            width: 40%;
+            display: inline;
+            float: right;
+        }
+
+        #email {
+            width: 100%;
+        }
+        
+        #subject-line {
+            width: 100%;;
+        }
+        
+        #message {
+            width: 100%;
+        }
+        
+        input[type=submit] {
+            font-family: "Inter", sans-serif;
+            background-color: white;
+            border: solid;
+            border-color: #1c7b20;
+            color: #1c7b20;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: 0.5s;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #1c7b20;
+            color: white;
         }
     </style>
 
@@ -89,7 +185,7 @@
     <div id="title-image">
         <div id="title-text">
             <h1>DAUN</h1>
-            <h3>FIRST ROBOTICS TEAM 4617</h3>
+            <h3><i>FIRST</i> ROBOTICS COMPETITION TEAM 4617</h3>
         </div>
         
         <a href="contact_us.html" id="join-button">
@@ -97,8 +193,35 @@
         </a>
     </div>
 
-    <div id="body-text">
-        <p>Body text goes here! (scroll down, theres a footer)</p>
+    <div id="who-are-we">
+        <h2>WHO ARE WE?</h2>
+        <p>Established in 2015, <b><i>FIRST</i> Robotics Competition Team #4617</b>, otherwise called <b>DAUN</b>, is an <b>all-girls 
+        community robotics team</b> based at Western University in London, Ontario.</p>
+        <br>
+        <p>DAUN helps sharpen the minds of high-school students by fostering skills in robotics, technology, problem-solving, and critical-thinking. 
+        Members are given the chance to gain <b>hands-on experience with robotics</b>, including the planning, designing, mechanics, and programming of a robot.
+        <b>Strong lasting friendships</b> can be made with other members on the team, as well as <b>connections with other mentors and students</b>.
+        Not only does DAUN provides experience in robotics, but there is also experience with <b>business and art!</b></p>
+        <a href="https://www.firstinspires.org/robotics/frc" id="learn-about-first">
+            LEARN MORE ABOUT <i>FIRST</i>
+        </a>
+    </div>
+    
+    <div id="image-carousel">
+    image carousel
+    </div>
+    
+    <div id="send-message">
+       <h2>SEND US A MESSAGE!</h2>
+       
+        <form action="contact_form_handler.php"></form> <!-- no idea what this is yet -->
+        
+        <input type="text" id="first-name" name="first-name" placeholder="First Name">
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
+        <input type="text" id="email" name="email" placeholder="Email">
+        <input type="text" id="subject-line" name="subject-line" placeholder="Subject Line">
+        <input type="text" id="message" name="message" placeholder="Write your message..." style="height:200px">
+        <input type="submit" value="SUBMIT">
     </div>
 
 
@@ -106,7 +229,13 @@
 
 
     <script>
-        // JS goes here!
+        // this is JS!
+        // client-side contact form validation
+        var frmvalidator  = new Validator("message-form");
+        frmvalidator.addValidation("first-name","req","Please provide your first name");
+        frmvalidator.addValidation("last-name","req","Please provide your last name");
+        frmvalidator.addValidation("email","req","Please provide your email");
+        frmvalidator.addValidation("email","email","Please enter a valid email address");
     </script>
 
     <!-- navbar/footer stuff - PLEASE DO NOT MODIFY -->
