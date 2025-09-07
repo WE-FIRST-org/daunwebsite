@@ -64,7 +64,7 @@
         /*who are we explanation*/
         #who-are-we {
             background-color: white;
-            padding: 50px 70px;
+            padding: 50px 15px;
             text-align: center;
         }
         
@@ -179,7 +179,7 @@
         /*contact form*/
         #send-message {
             background-color: white;
-            padding: 50px 70px;
+            padding: 50px 15px;
             text-align: center;
         }
         
@@ -207,6 +207,8 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            width: calc(100% - 26px);
+            resize: vertical;
         }
 
         input[type=email], select, textarea {
@@ -221,30 +223,7 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-        }
-        
-        #first-name {
-            width: 40%;
-            display: inline;
-            float: left;
-        }
-        
-        #last-name {
-            width: 40%;
-            display: inline;
-            float: right;
-        }
-
-        #email {
-            width: 100%;
-        }
-        
-        #subject-line {
-            width: 100%;;
-        }
-        
-        #message {
-            width: 100%;
+            width: calc(100% - 26px);
         }
         
         input[type=submit] {
