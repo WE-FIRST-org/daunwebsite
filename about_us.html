@@ -3,79 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <title>About Us</title>
+    <link rel="stylesheet" href="css_files/general_format.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #404040;
-        }
-
-        #title-image {
-            background-image: linear-gradient(rgba(0,25,0,0.5), rgba(0,25,0,0.5)), url("images/banner-image.jpg");
-            height: 50vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-            
-            text-align: left;
-            padding: 70px;
-            background-color: #676767;
-            /*
-            container-type: size;
-            container-name: title-banner;
-            */
-        }
-        
-        #title-text {
-            max-width: 700px;
-        }
-
-        #title-text h1 {
-            font-family: "Inter", sans-serif;
-            font-size: clamp(0px,10vw,100px);
-            color: white;
-        }
-        
-        #title-text p {
-            font-family: "Inter", sans-serif;
-            font-size: clamp(0px,7vw,20px);
-            color: white;
-        }
-
-
-        #body-text {
-            background-color: white;
-            height: 200px;
-            padding: 50px 70px;
-        }
-
-        #body-text p {
-            font-family: "Inter", sans-serif;
-            font-size: 20px;
-        }
-		
-		#gallery-table {
-			background-color: #F2F2F2;
-			height: 600px
+		#season-gallery {
+			background-color: white;
+			padding: 20px;
+			text-align: center;
 		}
+
+		#season-gallery h2 {
+			font-family: "Inter", sans-serif;
+            font-size: 30px;
+            margin-bottom: 20px;
+		}
+
+		#season-gallery label {
+			font-family: "Inter", sans-serif;
+            font-size: 20px;
+			color: white;
+		}
+
+		#season-gallery label:hover {
+			color: #c9e8c3;
+		}
+
+		/* galleries dropdowns */
+		.gallery-section {
+			max-width: 700px;
+			margin: auto;
+		}
+
+		.dropdown-checkbox {
+			display: none;
+		}
+
+		.dropdown-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 15px;
+			background-color: #162b17;
+			cursor: pointer;
+			font-weight: bold;
+			user-select: none;
+		}
+
+		.arrow {
+		    display: inline-block;
+		    transition: transform 0.3s ease;
+		}
+
+		.dropdown-content {
+		    display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease;
+
+		}
+
+		.dropdown-inner {
+			min-height: 0;
+		}
+
+		/* when checkbox is checked */
+		.dropdown-checkbox:checked ~ .dropdown-header .arrow {
+		    transform: rotate(180deg);
+		}
+
+		.dropdown-checkbox:checked ~ .dropdown-content {
+			grid-template-rows: 1fr;
+		}
+
+		/* galleries (dropdown content) */
+		.container {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-auto-rows: 100px;
+			grid-gap: 10px;
+			grid-auto-flow: dense;
+			overflow: hidden;
+		}
+
+		.gallery-container {
+			position: relative;
+		}
+
+		.gallery-item {
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+
+		.gallery-item .image {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.gallery-item .image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 50% 50%;
+			cursor: pointer;
+			transition: .3s ease-in-out;
+		}
+
+		.gallery-item:hover .image img {
+			transform: scale(1.1);
+		}
+
+		.w-1 {
+			grid-column: span 1;
+		}
+
+		.w-2 {
+			grid-column: span 2;
+		}
+
+		.w-3 {
+			grid-column: span 3;
+		}
+
+		.w-4 {
+			grid-column: span 4;
+		}
+
+		.w-5 {
+			grid-column: span 5;
+		}
+
+		.w-6 {
+			grid-column: span 6;
+		}
+
+		.h-1 {
+			grid-row: span 1;
+		}
+
+		.h-2 {
+			grid-row: span 2;
+		}
+
+		.h-3 {
+			grid-row: span 3;
+		}
+
+		.h-4 {
+			grid-row: span 4;
+		}
+
+		.h-5 {
+			grid-row: span 5;
+		}
+
+		.h-6 {
+			grid-row: span 6;
+		}
+
+		@media screen and (max-width: 500px) {
+			.container {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.w-1, .w-2, .w-3, .w-4, .w-5, .w-6 {
+				grid-column: span 1;
+			}
+
+			.h-1, .h-2, .h-3, .h-4, .h-5, .h-6 {
+				grid-row: span 1;
+			}
+		}
+
+
+		/* modal css */
+		/* The Modal (background) */
+		.modal {
+			display: none;
+			position: fixed;
+			inset: 0;
+			z-index: 9999;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100vh;
+			overflow: auto;
+			background: rgba(0,0,0,0.85);
+
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Modal Content */
+		.modal-content {
+		    position: relative;
+		    margin: auto;
+			max-width: 90%;
+		    background: transparent;
+			text-align: center;
+		}
+
+		/* The Close Button */
+		.close {
+		    color: white;
+		    position: fixed;
+		    top: 20px;
+		    right: 30px;
+		    font-size: 35px;
+		    font-weight: bold;
+			z-index: 10000;
+		}
+
+		.close:hover, .close:focus {
+		    color: #c9e8c3;
+		    text-decoration: none;
+		    cursor: pointer;
+		}
+
+		/* Hide the slides by default */
+		.mySlides {
+		    display: none;
+			width: 100%;
+			height: 100%;
+
+			justify-content: center;
+            align-items: center;
+		}
+
+		.modal-content img {
+			max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+		}
+
+		/* Next & previous buttons */
+		.prev, .next {
+			cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.5s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+		}
+
+		.prev {
+			left: 0;
+		}
+		
+		.next {
+			right: 0;
+		}
+
+		/* On hover, add a black background color with a little bit see-through */
+		.prev:hover, .next:hover {
+		    background-color: rgba(0, 0, 0, 0.8);
+		}
+
+		/* Number text (1/3 etc) */
+		.numbertext {
+		    color: #f2f2f2;
+		    font-size: 12px;
+		    padding: 8px 12px;
+		    position: absolute;
+		    top: 0;
+		}
+
+		#dotContainer {
+			text-align: center;
+		}
+
+		.dot {
+          cursor: pointer;
+          height: 15px;
+          width: 15px;
+          margin: 0 2px;
+          margin-top: 10px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.5s ease;
+        }
+
+        .active, .dot:hover {
+          background-color: #717171;
+        }
     </style>
-
-	<style type="text/css">
-		.tg  {border-collapse:collapse; border-spacing:0;}
-		.tg td{border-color:black; border-style:solid; border-width:1px; font-family:Arial, sans-serif; font-size:24px;
-			overflow:hidden; padding:20px 30px; word-break:normal;}
-		.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:24px;
-			font-weight:normal;overflow:hidden;padding:10px 3px;word-break:normal;}
-		.tg .tg-baqh{text-align:center;vertical-align:top}
-		.tg .tg-rz9m{position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;will-change:transform}
-	</style>
-
-
 </head>
 
 <body>
@@ -84,8 +302,8 @@
    <div id="insertedNavbar"></div>
     
 
-    <div id="title-image">
-        <div id="title-text">
+    <div class="title-image">
+        <div class="title-text">
             <h1>ABOUT US</h1>
             <p>FRC4617 DAUN, aims to provide girls in grades 9-12 the opportunity to participate in FIRST Robotics in a setting as part of an <b>all-girls</b> team.
 			experience 
@@ -94,44 +312,892 @@
         </div>
     </div>
 
-    <div id="body-text">
-        <p>FRC4617 DAUN is unique experience for girls wishing to participate in <i>FIRST Robotics Competition</i>.  The team is hosted by, WE-FIRST, an Undergraduate Engineering student club in the Faculty of Engineering at 
-		Western Univervisty.</p>  
+    <div class="body-text">
+        <p>FRC4617 DAUN is unique experience for girls wishing to participate in <i>FIRST Robotics Competition</i>.  The team is hosted by WE-FIRST, an Undergraduate Engineering student club in the Faculty of Engineering at
+		Western University.</p>
 		<br>
-		<p>The WE-FIRST club has undergraduate engineering student who were dedicated participants in FRC teams during high-school.  They recognize the value FRC had in shaping their career goals and interest in 
-		STEM fields and want to give back as mentors.  With support and guidance of faculty and staff advisors.  WE-FIRST hosts and mentors FRC4617 DAUN.</p>
+		<p>The WE-FIRST club has undergraduate engineering students who were dedicated participants in FRC teams during high-school.  They recognize the value FRC had in shaping their career goals and interest in
+		STEM fields and want to give back as mentors with support and guidance of faculty and staff advisors.  WE-FIRST hosts and mentors FRC4617 DAUN.</p>
     </div>
 
+    <div id="season-gallery">
+       <h2>Season Image Gallery</h2>
 
-	<div id="gallery-table" align=center>
-	
-	<h1>Season Image Gallery</h1>
-	<br>
-		<table class="tg"><thead>
-		<tr>
-			<th class="tg-rz9m">2025</th>
-			<th class="tg-rz9m">2024</th>
-			<th class="tg-rz9m">2023</th>
-			<th class="tg-rz9m">2022</th>
-			<th class="tg-rz9m">2021</th>
-		</tr></thead>
-		<tbody>
-		<tr>
-			<td class="tg-baqh">Dive</td>
-			<td class="tg-baqh">Crescendo</td>
-			<td class="tg-baqh">Charged Up</td>
-			<td class="tg-baqh">Rapid React</td>
-			<td class="tg-baqh">Infinite Recharge</td>
-		</tr>
-		</tbody>
-		</table>
-	</div>
+       <div class="gallery-section">
+		   <input type="checkbox" id="gallery2026" class="dropdown-checkbox">
+		   <label for="gallery2026" class="dropdown-header">
+			   Rebuilt 2026
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image1.jpg" alt="Rebuilt Image 1" onclick="openGallery(rebuilt2026, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image2.jpg" alt="Rebuilt Image 2" onclick="openGallery(rebuilt2026, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image3.jpg" alt="Rebuilt Image 3" onclick="openGallery(rebuilt2026, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image4.jpg" alt="Rebuilt Image 4" onclick="openGallery(rebuilt2026, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image5.jpg" alt="Rebuilt Image 5" onclick="openGallery(rebuilt2026, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image6.jpg" alt="Rebuilt Image 6" onclick="openGallery(rebuilt2026, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image7.jpg" alt="Rebuilt Image 7" onclick="openGallery(rebuilt2026, 6)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image8.jpg" alt="Rebuilt Image 8" onclick="openGallery(rebuilt2026, 7)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image9.jpg" alt="Rebuilt Image 9" onclick="openGallery(rebuilt2026, 8)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image10.jpg" alt="Rebuilt Image 10" onclick="openGallery(rebuilt2026, 9)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2026_rebuilt/image11.jpg" alt="Rebuilt Image 11" onclick="openGallery(rebuilt2026, 10)">
+							</div>
+					   </div>
+					</div>
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2025" class="dropdown-checkbox">
+		   <label for="gallery2025" class="dropdown-header">
+			   Reefscape 2025
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image1.jpg" alt="Reefscape Image 1" onclick="openGallery(reefscape2025, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image2.jpg" alt="Reefscape Image 2" onclick="openGallery(reefscape2025, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image3.jpg" alt="Reefscape Image 3" onclick="openGallery(reefscape2025, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image4.jpg" alt="Reefscape Image 4" onclick="openGallery(reefscape2025, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image5.jpg" alt="Reefscape Image 5" onclick="openGallery(reefscape2025, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image6.jpg" alt="Reefscape Image 6" onclick="openGallery(reefscape2025, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image7.jpg" alt="Reefscape Image 7" onclick="openGallery(reefscape2025, 6)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image8.jpg" alt="Reefscape Image 8" onclick="openGallery(reefscape2025, 7)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image9.jpg" alt="Reefscape Image 9" onclick="openGallery(reefscape2025, 8)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image10.jpg" alt="Reefscape Image 10" onclick="openGallery(reefscape2025, 9)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image11.jpg" alt="Reefscape Image 11" onclick="openGallery(reefscape2025, 10)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2025_reefscape/image12.jpg" alt="Reefscape Image 12" onclick="openGallery(reefscape2025, 11)">
+							</div>
+					   </div>
+					</div>
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2024" class="dropdown-checkbox">
+		   <label for="gallery2024" class="dropdown-header">
+			   Crescendo 2024
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image1.jpg" alt="Crescendo Image 1" onclick="openGallery(crescendo2024, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image2.jpg" alt="Crescendo Image 2" onclick="openGallery(crescendo2024, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image3.jpg" alt="Crescendo Image 3" onclick="openGallery(crescendo2024, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image4.jpg" alt="Crescendo Image 4" onclick="openGallery(crescendo2024, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image5.jpg" alt="Crescendo Image 5" onclick="openGallery(crescendo2024, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image6.jpg" alt="Crescendo Image 6" onclick="openGallery(crescendo2024, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image7.jpg" alt="Crescendo Image 7" onclick="openGallery(crescendo2024, 6)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image8.jpg" alt="Crescendo Image 8" onclick="openGallery(crescendo2024, 7)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image9.jpg" alt="Crescendo Image 9" onclick="openGallery(crescendo2024, 8)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image10.jpg" alt="Crescendo Image 10" onclick="openGallery(crescendo2024, 9)">
+							</div>
+					   </div>
+					</div>
+
+                   <div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2024_crescendo/image11.jpg" alt="Crescendo Image 11" onclick="openGallery(crescendo2024, 9)">
+							</div>
+					   </div>
+					</div>
+
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2023" class="dropdown-checkbox">
+		   <label for="gallery2023" class="dropdown-header">
+			   Charged Up 2023
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image1.jpg" alt="Charged Up Image 1" onclick="openGallery(chargedUp2023, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image2.jpg" alt="Charged Up Image 2" onclick="openGallery(chargedUp2023, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image3.jpg" alt="Charged Up Image 3" onclick="openGallery(chargedUp2023, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image4.jpg" alt="Charged Up Image 4" onclick="openGallery(chargedUp2023, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image5.jpg" alt="Charged Up Image 5" onclick="openGallery(chargedUp2023, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image6.jpg" alt="Charged Up Image 6" onclick="openGallery(chargedUp2023, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image7.jpg" alt="Charged Up Image 7" onclick="openGallery(chargedUp2023, 6)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image8.jpg" alt="Charged Up Image 8" onclick="openGallery(chargedUp2023, 7)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image9.jpg" alt="Charged Up Image 9" onclick="openGallery(chargedUp2023, 8)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2023_charged_up/image10.jpg" alt="Charged Up Image 10" onclick="openGallery(chargedUp2023, 9)">
+							</div>
+					   </div>
+					</div>
+
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2022" class="dropdown-checkbox">
+		   <label for="gallery2022" class="dropdown-header">
+			   Repid React 2022
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image1.jpg" alt="Rapid React Image 1" onclick="openGallery(rapidReact2022, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image2.jpg" alt="Rapid React Image 2" onclick="openGallery(rapidReact2022, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image3.jpg" alt="Rapid React Image 3" onclick="openGallery(rapidReact2022, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image4.jpg" alt="Rapid React Image 4" onclick="openGallery(rapidReact2022, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image5.jpg" alt="Rapid React Image 5" onclick="openGallery(rapidReact2022, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image6.jpg" alt="Rapid React Image 6" onclick="openGallery(rapidReact2022, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image7.jpg" alt="Rapid React Image 7" onclick="openGallery(rapidReact2022, 6)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image8.jpg" alt="Rapid React Image 8" onclick="openGallery(rapidReact2022, 7)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image9.jpg" alt="Rapid React Image 9" onclick="openGallery(rapidReact2022, 8)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2022_rapid_react/image10.jpg" alt="Rapid React Image 10" onclick="openGallery(rapidReact2022, 9)">
+							</div>
+					   </div>
+					</div>
+
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2021" class="dropdown-checkbox">
+		   <label for="gallery2021" class="dropdown-header">
+			   Game Changers 2021
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+
+
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2020" class="dropdown-checkbox">
+		   <label for="gallery2020" class="dropdown-header">
+			   Infinite Recharge 2020
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image1.jpg" alt="Infinite Recharge Image 1" onclick="openGallery(infiniteRecharge2020, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image2.jpg" alt="Infinite Recharge Image 2" onclick="openGallery(infiniteRecharge2020, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image3.jpg" alt="Infinite Recharge Image 3" onclick="openGallery(infiniteRecharge2020, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image4.jpg" alt="Infinite Recharge Image 4" onclick="openGallery(infiniteRecharge2020, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image5.jpg" alt="Infinite Recharge Image 5" onclick="openGallery(infiniteRecharge2020, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image6.jpg" alt="Infinite Recharge Image 6" onclick="openGallery(infiniteRecharge2020, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2020_infinite_recharge/image7.jpg" alt="Infinite Recharge Image 7" onclick="openGallery(infiniteRecharge2020, 6)">
+							</div>
+					   </div>
+					</div>
+
+			   </div>
+			</div>
+        </div>
+
+        <br>
+
+        <div class="gallery-section">
+		   <input type="checkbox" id="gallery2019" class="dropdown-checkbox">
+		   <label for="gallery2019" class="dropdown-header">
+			   Deep Space 2019
+			   <span class="arrow fa-solid fa-arrow-down"></span>
+		   </label>
+
+			<div class="dropdown-content">
+			   <div class="container dropdown-inner">
+				   <div class="gallery-container w-4 h-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image1.jpg" alt="Deep Space Image 1" onclick="openGallery(deepSpace2019, 0)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2 h-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image2.jpg" alt="Deep Space Image 2" onclick="openGallery(deepSpace2019, 1)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image3.jpg" alt="Deep Space Image 3" onclick="openGallery(deepSpace2019, 2)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image4.jpg" alt="Deep Space Image 4" onclick="openGallery(deepSpace2019, 3)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image5.jpg" alt="Deep Space Image 5" onclick="openGallery(deepSpace2019, 4)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image6.jpg" alt="Deep Space Image 6" onclick="openGallery(deepSpace2019, 5)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image7.jpg" alt="Deep Space Image 7" onclick="openGallery(deepSpace2019, 6)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image8.jpg" alt="Deep Space Image 8" onclick="openGallery(deepSpace2019, 7)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-1">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image9.jpg" alt="Deep Space Image 9" onclick="openGallery(deepSpace2019, 8)">
+							</div>
+					   </div>
+					</div>
+
+					<div class="gallery-container w-2">
+					   <div class="gallery-item">
+							<div class="image">
+								<img src="../images/2019_deep_space/image10.jpg" alt="Deep Space Image 10" onclick="openGallery(deepSpace2019, 9)">
+							</div>
+					   </div>
+					</div>
+
+			   </div>
+			</div>
+        </div>
+
+
+
+
+
+
+
+
+        <!-- The Modal/Lightbox -->
+		<div id="myModal" class="modal">
+		    <span class="close cursor" onclick="closeModal()">&times;</span>
+		    <div class="modal-content">
+
+                <span class="numbertext" id="imageNumber"></span>
+
+                <img id="modalImage">
+
+			    <!--dots and circles controls -->
+				<div id="dotContainer">
+				</div>
+		    </div>
+
+		    <div class="controls">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+		</div>
+
+    </div>
+
 
     <div id="insertedFooter"></div>
 
 
     <script>
-        // JS goes here!
+		// Arrays with pictures from each season
+		const rebuilt2026 = [
+			"../images/2026_rebuilt/image1.jpg",
+			"../images/2026_rebuilt/image2.jpg",
+			"../images/2026_rebuilt/image3.jpg",
+			"../images/2026_rebuilt/image4.jpg",
+			"../images/2026_rebuilt/image5.jpg",
+			"../images/2026_rebuilt/image6.jpg",
+			"../images/2026_rebuilt/image7.jpg",
+			"../images/2026_rebuilt/image8.jpg",
+			"../images/2026_rebuilt/image9.jpg",
+			"../images/2026_rebuilt/image10.jpg",
+			"../images/2026_rebuilt/image11.jpg"
+		];
+
+		const reefscape2025 = [
+			"../images/2025_reefscape/image1.jpg",
+			"../images/2025_reefscape/image2.jpg",
+			"../images/2025_reefscape/image3.jpg",
+			"../images/2025_reefscape/image4.jpg",
+			"../images/2025_reefscape/image5.jpg",
+			"../images/2025_reefscape/image6.jpg",
+			"../images/2025_reefscape/image7.jpg",
+			"../images/2025_reefscape/image8.jpg",
+			"../images/2025_reefscape/image9.jpg",
+			"../images/2025_reefscape/image10.jpg",
+			"../images/2025_reefscape/image11.jpg",
+			"../images/2025_reefscape/image12.jpg"
+		];
+
+		const crescendo2024 = [
+			"../images/2024_crescendo/image1.jpg",
+			"../images/2024_crescendo/image2.jpg",
+			"../images/2024_crescendo/image3.jpg",
+			"../images/2024_crescendo/image4.jpg",
+			"../images/2024_crescendo/image5.jpg",
+			"../images/2024_crescendo/image6.jpg",
+			"../images/2024_crescendo/image7.jpg",
+			"../images/2024_crescendo/image8.jpg",
+			"../images/2024_crescendo/image9.jpg",
+			"../images/2024_crescendo/image10.jpg",
+			"../images/2024_crescendo/image11.jpg"
+		];
+
+		const chargedUp2023 = [
+			"../images/2023_charged_up/image1.jpg",
+			"../images/2023_charged_up/image2.jpg",
+			"../images/2023_charged_up/image3.jpg",
+			"../images/2023_charged_up/image4.jpg",
+			"../images/2023_charged_up/image5.jpg",
+			"../images/2023_charged_up/image6.jpg",
+			"../images/2023_charged_up/image7.jpg",
+			"../images/2023_charged_up/image8.jpg",
+			"../images/2023_charged_up/image9.jpg",
+			"../images/2023_charged_up/image10.jpg"
+		];
+
+		const rapidReact2022 = [
+			"../images/2022_rapid_react/image1.jpg",
+			"../images/2022_rapid_react/image2.jpg",
+			"../images/2022_rapid_react/image3.jpg",
+			"../images/2022_rapid_react/image4.jpg",
+			"../images/2022_rapid_react/image5.jpg",
+			"../images/2022_rapid_react/image6.jpg",
+			"../images/2022_rapid_react/image7.jpg",
+			"../images/2022_rapid_react/image8.jpg",
+			"../images/2022_rapid_react/image9.jpg",
+			"../images/2022_rapid_react/image10.jpg"
+		];
+
+		const gameChangers2021 = [
+		];
+
+		const infiniteRecharge2020 = [
+			"../images/2020_infinite_recharge/image1.jpg",
+			"../images/2020_infinite_recharge/image2.jpg",
+			"../images/2020_infinite_recharge/image3.jpg",
+			"../images/2020_infinite_recharge/image4.jpg",
+			"../images/2020_infinite_recharge/image5.jpg",
+			"../images/2020_infinite_recharge/image6.jpg",
+			"../images/2020_infinite_recharge/image7.jpg"
+		];
+
+		const deepSpace2019 = [
+			"../images/2019_deep_space/image1.jpg",
+			"../images/2019_deep_space/image2.jpg",
+			"../images/2019_deep_space/image3.jpg",
+			"../images/2019_deep_space/image4.jpg",
+			"../images/2019_deep_space/image5.jpg",
+			"../images/2019_deep_space/image6.jpg",
+			"../images/2019_deep_space/image7.jpg",
+			"../images/2019_deep_space/image8.jpg",
+			"../images/2019_deep_space/image9.jpg",
+			"../images/2019_deep_space/image10.jpg"
+		];
+
+		let currentGallery = [];
+		let currentIndex = 0;
+
+		function openGallery(images, index) {
+			currentGallery = images;
+			currentIndex = index;
+
+			document.getElementById("myModal").style.display = "flex";
+			document.body.style.overflow = "hidden";
+
+			const htmlTemplate = currentGallery.map((photo, index) => `
+				<span class="dot" onclick="currentImg(${index + 1})"></span>
+				`).join('');
+			document.getElementById('dotContainer').innerHTML = htmlTemplate;
+
+			updateModal();
+		}
+
+		function updateModal() {
+			document.getElementById("modalImage").src = currentGallery[currentIndex];
+
+			document.getElementById("imageNumber").innerHTML = (currentIndex + 1) + " / " + currentGallery.length;
+
+			let dots = document.getElementsByClassName("dot");
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			dots[currentIndex].className += " active";
+		}
+
+		function plusSlides(direction) {
+			currentIndex += direction;
+
+			if (currentIndex >= currentGallery.length) {
+				currentIndex = 0;
+			}
+
+			if (currentIndex < 0) {
+				currentIndex = currentGallery.length - 1;
+			}
+
+			updateModal();
+		}
+
+		function currentImg(imgNum) {
+			currentIndex = imgNum - 1;
+
+			updateModal();
+		}
+
+		function closeModal() {
+			document.getElementById("myModal").style.display = "none";
+			document.body.style.overflow = "";
+		}
+
+
+
+
+
     </script>
 
     <!-- navbar/footer stuff - PLEASE DO NOT MODIFY -->
