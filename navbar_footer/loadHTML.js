@@ -7,7 +7,7 @@ function loadHTML(id, url) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    loadHTML("insertedImports", "../imports.html");
-    loadHTML("insertedNavbar", "navbar_footer/navbar.html");
-    loadHTML("insertedFooter", "navbar_footer/footer.html");
+    loadHTML("insertedImports", "imports.html");
+    loadHTML("insertedNavbar", "./navbar.html");
+    loadHTML("insertedFooter", "./footer.html");
 });
