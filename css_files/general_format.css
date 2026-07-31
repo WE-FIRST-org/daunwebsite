@@ -4,13 +4,11 @@
 }
 
 body {
-    background-color: #404040;
+    background-color: #162b17;
 }
 
 .title-image {
-    background-image: linear-gradient(rgba(0,25,0,0.5), rgba(0,25,0,0.5)), url("../images/banner_images/home-banner-image.jpg");
     height: 50vh;
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -48,7 +46,7 @@ body {
 
 .body-text {
     background-color: white;
-    padding: 50px 15px;
+    padding: 50px 45px;
 }
 
 .center {
@@ -75,3 +73,12 @@ body {
     line-height: 30px;
 }
 
+.max-small {
+    max-width: 800px;
+    margin: auto;
+}
+
+.max-big {
+    max-width: 1000px;
+    margin: auto;
+}
